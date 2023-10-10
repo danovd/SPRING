@@ -1,8 +1,8 @@
 package com.example.coffee_shop.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 @Table(name="users")
@@ -11,8 +11,16 @@ private String firstName;
 private String lastName;
 private String username;
 private String email;
-
 private String password;
+private Set<Order> orders;
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
 
     public User() {
     }
