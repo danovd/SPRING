@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Andrey's</title>
+  <link rel="stylesheet" href="/css/reset-css.css"/>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<header th:fragment="header">
+  <nav class="navbar bg-dark navbar-expand-lg navbar-background bg-dark ">
+    <a class="nav-link text-white active h5" href="/">Andrey's</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+      <ul class="navbar-nav row">
+        <th:block th:if="${@currentUser.getId() == null}">
+
+        <li class="nav-item col-md-4">
+          <a class="nav-link text-white active h5" href="/">Home</a>
+        </li>
+        <li class="nav-item col-md-4">
+          <a class="nav-link text-white active h5" href="/users/login">Login</a>
+        </li>
+        <li class="nav-item col-md-4">
+          <a class="nav-link text-white active h5" href="/users/register">Register</a>
+        </li>
+
+        </th:block>
+
+
+        <th:block th:unless="${@currentUser.getId() == null}">
+
+          <li class="nav-item col-md-4">
+            <a class="nav-link text-white active h5" href="/items/add">Add Item</a>
+          </li>
+          <li class="nav-item col-md-4">
+            <a class="nav-link text-white active h5" href="/users/logout">Logout</a>
+          </li>
+
+        </th:block>
+
+
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<footer th:fragment="footer" class="footer bg-dark  py-2">
+  <div class="container-fluid text-center">
+    <div class="footer-background h5 text-white">
+      & CopyRight Andrey's. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
