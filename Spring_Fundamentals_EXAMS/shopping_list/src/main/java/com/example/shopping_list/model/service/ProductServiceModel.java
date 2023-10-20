@@ -13,7 +13,6 @@ public class ProductServiceModel {
     private String description;
     private BigDecimal price;
     private LocalDateTime neededBefore;
-
     private CategoryName category;
 
     public ProductServiceModel() {
