@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}"></head>
+<body>
+<header th:replace="~{fragments/commons::nav}"></header>
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add word</span></h1>
+    <hr class="hr-3 w-25 bg-white"/>
+
+    <form class="mx-auto w-25 bg-blur rounded" method="POST" action="/words/add" th:object="${wordAddBindingModel}">
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="term" class="h4 mb-2">Term</label>
+            </div>
+            <textarea th:field="*{term}" th:errorclass="'is-invalid bg-danger'"  type="text" class="form-control" id="term" name="term"></textarea>
+            <small  th:errors="*{term}" class="invalid-feedback text-danger">Term error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="translation" class="h4 mb-2">Translation</label>
+            </div>
+            <textarea th:field="*{translation}" th:errorclass="'is-invalid bg-danger'"  type="text" class="form-control" id="translation" name="translation"></textarea>
+            <small  th:errors="*{translation}" class="invalid-feedback text-danger">Translation error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="example" class="h4 mb-2">Example</label>
+            </div>
+            <textarea th:field="*{example}" th:errorclass="'is-invalid bg-danger'"  type="text" class="form-control" id="example" name="example"></textarea>
+            <small th:errors="*{example}" class="invalid-feedback text-danger">Example error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="inputDate" class="h4 mb-2">Set input date</label>
+            </div>
+            <input th:field="*{date}" th:errorclass="'is-invalid bg-danger'"  type="date" class="form-control" id="inputDate" name="inputDate"/>
+            <small th:errors="*{date}" class="invalid-feedback text-danger">Input Date error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="language" class="h4 mb-2">Language</label>
+            </div>
+            <select th:field="*{language}" th:errorclass="'is-invalid bg-danger'"   class="browser-default custom-select" id="language" name="language">
+                <option selected value="">Select language</option>
+                <option  th:each="l : ${T(project.model.entity.enums.LanguageNameEnum).values()}"
+                         th:text="${l}" th:value="${l}">German</option>
+            </select>
+            <small   class="invalid-feedback text-danger">Please select language</small>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning  mb-3" value="Register">Add word</button>
+        </div>
+
+    </form>
+</main>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>
