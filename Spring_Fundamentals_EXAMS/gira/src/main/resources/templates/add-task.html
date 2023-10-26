@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons::head"></head>
+<body>
+<div class="page-container">
+<header th:replace="fragments/commons::header"></header>
+
+    <main class="content-wrap">
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Task</span></h1>
+        <hr class="hr-3 w-25 bg-white"/>
+        <form class="mx-auto w-25 bg-blur"  method="POST" action="/tasks/add" th:object="${taskAddBindingModel}">
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="name" class="h4 mb-2">Name</label>
+                </div>
+                <input th:field="*{name}" th:errorclass="'is-invalid bg-danger'"  type="text"  class="form-control" id="name" name="name"/>
+                <small class="invalid-feedback text-danger">Name error message</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder textCol d-flex justify-content-center">
+                    <label for="description" class="h4 mb-2">Description</label>
+                </div>
+                <input  th:field="*{description}" th:errorclass="'is-invalid bg-danger'" type="text" class="form-control" id="description" name="description"/>
+
+                <small class="invalid-feedback text-danger">Description error message</small>
+            </div>
+            <div class="form-group">
+                <div class="label-holder  textCol d-flex justify-content-center">
+                    <label for="dueDate" class="h4 mb-2">Due Date</label>
+                </div>
+                <input th:field="*{dueDate}" th:errorclass="'is-invalid bg-danger'"  type="date" class="form-control" id="dueDate" name="dueDate"/>
+                <small class="invalid-feedback text-danger">Date error message</small>
+            </div>
+
+
+
+
+
+            <div class="form-group">
+                <div class="label-holder  textCol d-flex justify-content-center">
+                    <label for="classification" class="h4 mb-2">Classification</label>
+                </div>
+                <select th:field="*{classification}" th:errorclass="is-invalid"  type="text" class="form-control" id="classification" name="classification">
+                    <option value=""  selected>Select Classification</option>
+                    <option th:each="c : ${T(com.example.gira.model.entity.enums.ClassificationNameEnum).values()}" th:value="${c}" th:text="${c}">FEATURE</option>
+                </select>
+                <small class="invalid-feedback text-danger">Classification error message</small>
+            </div>
+
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="button btn-warning  mb-3" value="Register">Add Task</button>
+            </div>
+        </form>
+    </main>
+   <footer th:replace="/fragments/commons::footer">
+   </footer>
+</div>
+
+
+</body>
+</html>
