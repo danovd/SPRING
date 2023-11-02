@@ -25,6 +25,7 @@ public class HomeController {
         }
 
         model.addAttribute("totalSum", productService.getTotalSum());
+
         model.addAttribute("drinks", productService
                 .findAllProductsByCategoryName(CategoryName.DRINK));
         model.addAttribute("food", productService
