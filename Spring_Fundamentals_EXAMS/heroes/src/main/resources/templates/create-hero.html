@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+
+
+<body>
+
+<header th:replace="fragments/commons::navigation"></header>
+
+
+<main>
+    <h1 class="text-center mt-2">Create Hero</h1>
+    <hr class="hr-3"/>
+    <form action="/heroes/create" method="POST" th:object="${heroAddBindingModel}" class="mx-auto w-15">
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="heroName" class="h4 mb-2">Hero Name</label>
+            </div>
+            <input th:field="*{name}" th:errorclass="'is-invalid bg-danger'" type="text" class="form-control" id="heroName" name="heroName"/>
+        </div>
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="heroClass" class="h4 mb-2">Hero Class</label>
+            </div>
+            <select th:field="*{clazzName}" th:errorclass="'is-invalid bg-danger'"  style="margin-left: 30%; width: 100px;" id="heroClass">
+                <option value=""  selected>Select Hero Class</option>
+                <option th:each="c : ${T(project.model.entity.ClazzName).values()}" th:value="${c}" th:text="${c}"></option>
+
+            </select>
+        </div>
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="level" class="h4 mb-2">Level</label>
+            </div>
+           <input th:field="*{level}" th:errorclass="'is-invalid bg-danger'" type="number" class="form-control" id="level" name="level"/>
+        </div>
+        <div class="button-holder d-flex justify-content-center">
+            <button class="btn btn-info text-white mb-3" type="submit">
+                Create Hero
+            </button>
+        </div>
+    </form>
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+
+
+</body>
+</html>
